@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="lib/angular.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="personCtrl">
+
+名: <input type="text" ng-model="firstName"><br>
+姓: <input type="text" ng-model="lastName">
+姓名: {{getName()}}<br>
+<form ng-app="" name="myForm">
+Email:
+    <input type="email" name="myAddress" ng-model="email">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址
+    </span>
+</form>
+{{email}} <br>
+<button ng-click="toggle()">显示额外信息</button>
+<br>
+<p ng-hide="myVar">
+请输入你的性别：<select>
+<option ng-repeat="x in sex">{{x}}</option>
+</select><br>
+请输入你的银行卡账号（大于8位）：<input type="text" ng-model="sum"><br>
+<p ng-show="sum < 10000000">小于8位</p>
+
+</p>
+
+<button > 提交</button>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('personCtrl', function($scope) {
+    $scope.firstName = "input your firstname";
+    $scope.lastName = "input yor lastname";
+    $scope.getName = function() {
+        if (($scope.firstName=="input your firstname") || ($scope.lastName=="input yor lastname"))
+        return ""
+        else return $scope.firstName + " " + $scope.lastName;
+    };
+    $scope.myVar = true;
+    $scope.toggle = function() {
+        $scope.myVar = !$scope.myVar;
+    };
+    $scope.sex = ["male","female"
+    ]
+});
+</script>
+
+</body>
+</html>
